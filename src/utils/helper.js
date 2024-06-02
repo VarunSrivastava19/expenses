@@ -15,8 +15,8 @@ const getFy = () => {
  * @typedef {object} OpStatus
  * @param {string} pending
  * @param {string} success
- * @param {string} error 
- * @param {("save"|"fetch")} op 
+ * @param {string} error
+ * @param {("save"|"fetch")} op
  * @returns {OpStatus} Status of promise
  */
 const notifyOps = (op) =>
@@ -37,5 +37,11 @@ const notifyOps = (op) =>
         success: "Promise resolved 👌",
         error: "Promise rejected 🤯",
       };
-
-export { getFy, notifyOps };
+/**
+ * 
+ * @param {string} month 3 Lettered Months - jan, feb ...
+ * @returns {boolean} validates the month parameter. 
+ */
+const validMonths = (month) =>
+  month.length !== 3 ? false : !isNaN(new Date(`2024 ${month} 01`));
+export { getFy, notifyOps, validMonths };
