@@ -1,17 +1,26 @@
 import { Alert, Button, Form, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useDexie } from "../hooks/useDexie";
+import { getFy, notifyOps } from "../utils/helper";
 
 export const Home = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    // watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const { saveExpense } = useDexie();
+  const onSubmit = async (data) => {
+    const fy = getFy();
+    try {
+      await toast.promise(saveExpense(fy, data), notifyOps("save"));
+    } catch (error) {
+      console.log("[Home - onSubmit] Error -", error);
+    }
+  };
   errors && console.log(errors);
-  // console.log(watch("name"));
   return (
     <>
       {errors.subject && <Alert variant="danger">
