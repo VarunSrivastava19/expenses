@@ -16,7 +16,6 @@ const App = () => {
         <Route element={<Skeleton />}>
           <Route path="/" element={<Home />} />
           <Route path="/show/:month" element={<View />} />
-
           <Route path="*" element={<>Hello there</>} />
         </Route>
       </Routes>

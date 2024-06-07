@@ -9,6 +9,11 @@ const ThemeProvider = ({ children }) => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
+  document.documentElement.style.setProperty(
+    "--body-bg-color",
+    theme === "light" ? "#FDFBF9" : "#333",
+  )
+
   return (
     <ThemeContext.Provider value={{ theme, themeToggle }}>
       {children}
