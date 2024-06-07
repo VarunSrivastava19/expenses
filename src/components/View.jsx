@@ -1,11 +1,17 @@
 import { Alert, Button } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { validMonths } from "../utils/helper";
+import { useEffect } from "react";
 
 export const View = () => {
   const { month } = useParams();
-  // const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const expenses = location.state;
+  useEffect(() => {
+    if (!expenses) navigate("/query");
+  });
   if (!validMonths(month))
     return (
       <>

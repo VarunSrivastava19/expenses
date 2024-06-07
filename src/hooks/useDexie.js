@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { db } from "../db";
 
 export const useDexie = () => {
@@ -16,21 +15,32 @@ export const useDexie = () => {
   const saveExpense = async (fy, data) => {
     try {
       const id = await db.table(`Expense${fy}`).add({ ...data });
-      toast(`Data added to Expense${fy} with id ${id}`);
+      // toast(`Data added to Expense${fy} with id ${id}`);
       return id;
     } catch (error) {
       console.log("[hooks/useDexie - saveExpense] Error -", error);
-      toast("Error saving data");
+      // toast("Error saving data");
       throw error;
     }
   };
   const fetchExpenses = async (fy, { startDate, endDate, subject }) => {
+    // console.log({ startDate, endDate, subject, fy });
+    if (!startDate && isNaN(startDate))
+      throw new Error("Invalid date provided.");
     try {
-      const expenses = await db.table(`Expense${fy}`).toArray();
+      let query = db.table(`Expense${fy}`);
+      if (subject) query = query.where("subject").equals(subject);
+      if (endDate)
+        query = query
+          .where("paidOn")
+          .aboveOrEqual(startDate)
+          .belowOrEqual(endDate);
+
+      // const expenses = await db.table(`Expense${fy}`).toArray();
+      const expenses = await query.toArray();
       return expenses;
     } catch (error) {
       console.log("[hooks/useDexie - fetchExpenses] Error -", error);
-      toast("Error fetching data");
       throw error;
     }
   };
