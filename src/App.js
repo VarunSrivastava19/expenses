@@ -7,6 +7,7 @@ import { Home } from "./components/Home";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { Custom404 } from "./components/Custom404";
 const App = () => {
   const { theme } = useContext(ThemeContext);
   return (
@@ -16,7 +17,7 @@ const App = () => {
         <Route element={<Skeleton />}>
           <Route path="/" element={<Home />} />
           <Route path="/show/:month" element={<View />} />
-          <Route path="*" element={<>Hello there</>} />
+          <Route path="*" element={<Custom404 />} />
         </Route>
       </Routes>
     </div>
