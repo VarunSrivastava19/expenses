@@ -23,43 +23,49 @@ export const Home = () => {
   errors && console.log(errors);
   return (
     <>
-      {errors.subject && <Alert variant="danger">
-        Enter Subject
-      </Alert>}
-      {
-        errors.paidOn && <Alert variant="danger">
-          Enter Paid On Date
-        </Alert>
-      }
-      {errors.amount && <Alert variant="danger">
-        Enter Correct Amount
-      </Alert>}
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group controlId="subject" aria-label="Enter Subject">
-          <Form.Label>Expense Subject</Form.Label>
+      {errors.subject && <Alert variant="danger">Enter Subject</Alert>}
+      {errors.paidOn && <Alert variant="danger">Enter Paid On Date</Alert>}
+      {errors.amount && <Alert variant="danger">Enter Correct Amount</Alert>}
+      <Form className="mx-auto my-5" onSubmit={handleSubmit(onSubmit)}>
+        <Form.Group
+          className="my-3"
+          controlId="subject"
+          aria-label="Enter Subject"
+          aria-labelledby="subLabel"
+        >
+          <Form.Label id="subLabel">Expense Subject</Form.Label>
           <Form.Control
             placeholder="Paid for...."
             {...register("subject", { required: true })}
             type="text"
           />
         </Form.Group>
-        <Form.Group controlId="paidOn" aria-label="Expense Paid On">
-          <Form.Label>Expense Paid On</Form.Label>
+        <Form.Group
+          className="my-3"
+          controlId="paidOn"
+          aria-label="Expense Paid On"
+          aria-labelledby="subLabel"
+        >
+          <Form.Label id="paidLabel">Expense Paid On</Form.Label>
           <Form.Control
             type="date"
             {...register("paidOn", { required: true })}
             placeholder="Paid Amount On...."
           />
         </Form.Group>
-        <Form.Group aria-label="Expense Amount">
-          <Form.Label>Expense Amount</Form.Label>
+        <Form.Group
+          className="my-3"
+          aria-label="Expense Amount"
+          aria-labelledby="expenseLabel"
+        >
+          <Form.Label id="expenseLabel">Expense Amount</Form.Label>
           <InputGroup>
             <InputGroup.Text id="rupee-symbol">₹</InputGroup.Text>
             <Form.Control
               id="amount"
               type="number"
               step={"any"}
-              {...register("amount", { required: true, min:1 })}
+              {...register("amount", { required: true, min: 1 })}
             />
           </InputGroup>
         </Form.Group>
