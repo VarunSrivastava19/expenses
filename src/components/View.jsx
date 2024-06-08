@@ -1,16 +1,16 @@
 import { Alert, Button } from "react-bootstrap";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import { validMonths } from "../utils/helper";
 import { useEffect } from "react";
+import { Jumbotron } from "./Jumbotron";
 
 export const View = () => {
   const { month } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const expenses = location.state;
+  const { expenses, fy } = location.state;
   useEffect(() => {
-    if (!expenses) navigate("/query");
+    if (!(expenses || fy)) navigate("/query");
   });
   if (!validMonths(month))
     return (
@@ -24,17 +24,24 @@ export const View = () => {
         </Alert>
       </>
     );
-  const toastify = () => toast("Hmm");
+  
+  console.log("[View] Expenses - ", expenses);
   return (
-    <>
-      <Alert>
-        Show data for month[string, length:3, format="MMM"] in URL in tabular
-        form
-      </Alert>
-      <p>Data for month : {month}</p>
-      <Button variant="outline-success" onClick={toastify}>
-        Show Toast
-      </Button>
-    </>
+    <Jumbotron
+      heading={`FY ${fy}`}
+      leadText={`Expenses for ${fy}`}
+      buttons={[
+        {
+          isPrimary: false,
+          title: "Go home",
+          to: "/",
+        },
+        {
+          isPrimary: true,
+          title: "Go Extract",
+          to: "/query",
+        },
+      ]}
+    />
   );
 };

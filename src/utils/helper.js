@@ -27,9 +27,11 @@ const getFy = (date = null) => {
 
 /**
  * @typedef {object} OpStatus
- * @param {string} pending
- * @param {string} success
- * @param {string} error
+ * @property {string} pending
+ * @property {string} success
+ * @property {string} error
+ * 
+ * 
  * @param {("save"|"fetch")} op
  * @returns {OpStatus} Status of promise
  */

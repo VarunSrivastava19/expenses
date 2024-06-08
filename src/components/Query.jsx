@@ -23,7 +23,12 @@ export const Query = () => {
         notifyOps("fetch")
       );
       // console.log(exps);
-      navigate(`/show/${getMonth(data.startDate)}`, { state: exps });
+      navigate(`/show/${getMonth(data.startDate)}`, {
+        state: {
+          fy,
+          expenses: exps,
+        },
+      });
     } catch (error) {
       console.log("[Query - onSubmit] Error -", error);
     }
@@ -31,7 +36,9 @@ export const Query = () => {
   // {errors.subject && <Alert variant="danger">Enter Subject</Alert>}
   return (
     <>
-      {errors.startDate && <Alert variant="danger">Enter Start Date (From)</Alert>}
+      {errors.startDate && (
+        <Alert variant="danger">Enter Start Date (From)</Alert>
+      )}
       <Form className="mx-auto my-5" onSubmit={handleSubmit(onSubmit)}>
         <Form.Group
           className="my-3"
