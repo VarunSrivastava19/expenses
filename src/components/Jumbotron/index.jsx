@@ -17,7 +17,7 @@ export const Jumbotron = ({ heading, leadText, buttons, ...rest }) => (
   <JumboBox {...rest}>
     <h1 className="display-1">{heading}</h1>
     <p className="lead">{leadText}</p>
-    <Buttons buttons={buttons} />
+    <Buttons isLink={true} buttons={buttons} />
   </JumboBox>
 );
 

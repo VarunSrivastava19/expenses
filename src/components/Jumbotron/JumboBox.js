@@ -7,9 +7,9 @@ const JumboBox = styled(Container)`
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  /* margin: 2rem 0; */
   text-align: center;
   border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
 `;
 
 export default JumboBox;

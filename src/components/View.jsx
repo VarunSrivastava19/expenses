@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { validMonths } from "../utils/helper";
 import { useEffect } from "react";
 import { Jumbotron } from "./Jumbotron";
+import { DataTable } from "./DataTable";
 
 export const View = () => {
   const { month } = useParams();
@@ -24,24 +25,27 @@ export const View = () => {
         </Alert>
       </>
     );
-  
+
   console.log("[View] Expenses - ", expenses);
   return (
-    <Jumbotron
-      heading={`FY ${fy}`}
-      leadText={`Expenses for ${fy}`}
-      buttons={[
-        {
-          isPrimary: false,
-          title: "Go home",
-          to: "/",
-        },
-        {
-          isPrimary: true,
-          title: "Go Extract",
-          to: "/query",
-        },
-      ]}
-    />
+    <>
+      <Jumbotron
+        heading={`FY ${fy}`}
+        leadText={`Expenses for ${fy}`}
+        buttons={[
+          {
+            isPrimary: false,
+            title: "Go home",
+            to: "/",
+          },
+          {
+            isPrimary: true,
+            title: "Go Extract",
+            to: "/query",
+          },
+        ]}
+      />
+      <DataTable expenses={expenses} rest={{box: {}, table: {className: "m-0 p-0"}}}  />
+    </>
   );
 };

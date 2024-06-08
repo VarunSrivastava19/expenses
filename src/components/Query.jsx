@@ -4,6 +4,7 @@ import { useDexie } from "../hooks/useDexie";
 import { toast } from "react-toastify";
 import { getFy, getMonth, notifyOps } from "../utils/helper";
 import { useNavigate } from "react-router-dom";
+import { Buttons } from "./Buttons";
 
 export const Query = () => {
   const navigate = useNavigate();
@@ -79,9 +80,21 @@ export const Query = () => {
             placeholder="Till date...."
           />
         </Form.Group>
-        <Button variant="outline-primary" type="submit">
-          Submit
-        </Button>
+        <Buttons isLink={false} buttons={[
+          {
+            isPrimary: true,
+            type: "submit",
+            title: "Submit",
+          },
+          {
+            isPrimary: false,
+            type: "reset",
+            title: "Reset",
+            Bprops: {
+              variant:"outline-warning"
+            }
+          }
+        ]} />
       </Form>
     </>
   );

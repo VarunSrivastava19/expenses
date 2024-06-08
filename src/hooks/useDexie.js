@@ -30,11 +30,9 @@ export const useDexie = () => {
     try {
       let query = db.table(`Expense${fy}`);
       if (subject) query = query.where("subject").equals(subject);
-      if (endDate)
-        query = query
-          .where("paidOn")
-          .aboveOrEqual(startDate)
-          .belowOrEqual(endDate);
+      if (endDate) {
+        query = query.where("paidon").between(startDate, endDate);
+      }
 
       // const expenses = await db.table(`Expense${fy}`).toArray();
       const expenses = await query.toArray();

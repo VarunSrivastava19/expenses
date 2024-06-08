@@ -30,8 +30,8 @@ const getFy = (date = null) => {
  * @property {string} pending
  * @property {string} success
  * @property {string} error
- * 
- * 
+ *
+ *
  * @param {("save"|"fetch")} op
  * @returns {OpStatus} Status of promise
  */
@@ -74,4 +74,6 @@ const getMonth = (date) => {
   return month;
 };
 
-export { getFy, notifyOps, validMonths, getMonth };
+const headers = ["id", "subject", "paidOn", "amount"];
+
+export { getFy, notifyOps, validMonths, getMonth, headers };
