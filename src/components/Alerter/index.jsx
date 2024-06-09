@@ -2,7 +2,7 @@ import { Alert } from "react-bootstrap";
 import PropTypes from "prop-types";
 /**
  * The Alert component.
- * 
+ *
  * @param {Object} props Alert props.
  * @param {"primary"|"secondary"|"success"|"danger"|"warning"|"info"|"light"|"dark"} props.severity The severity of alert.
  * @param {string?} props.heading The heading of Alert.
@@ -19,17 +19,17 @@ const Alerter = ({ severity, heading, message, rest }) => (
 
 Alerter.propTypes = {
   severity: PropTypes.oneOf([
-    'primary', 
-    'secondary', 
-    'success', 
-    'danger', 
-    'warning', 
-    'info', 
-    'light', 
-    'dark'
+    "primary",
+    "secondary",
+    "success",
+    "danger",
+    "warning",
+    "info",
+    "light",
+    "dark",
   ]).isRequired,
   heading: PropTypes.string,
   message: PropTypes.string.isRequired,
-}
+};
 
 export default Alerter;

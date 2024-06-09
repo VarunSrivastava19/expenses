@@ -80,21 +80,24 @@ export const Query = () => {
             placeholder="Till date...."
           />
         </Form.Group>
-        <Buttons isLink={false} buttons={[
-          {
-            isPrimary: true,
-            type: "submit",
-            title: "Submit",
-          },
-          {
-            isPrimary: false,
-            type: "reset",
-            title: "Reset",
-            Bprops: {
-              variant:"outline-warning"
-            }
-          }
-        ]} />
+        <Buttons
+          isLink={false}
+          buttons={[
+            {
+              isPrimary: true,
+              type: "submit",
+              title: "Submit",
+            },
+            {
+              isPrimary: false,
+              type: "reset",
+              title: "Reset",
+              Bprops: {
+                variant: "outline-warning",
+              },
+            },
+          ]}
+        />
       </Form>
     </>
   );

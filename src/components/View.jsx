@@ -1,18 +1,14 @@
 import { Alert, Button } from "react-bootstrap";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { validMonths } from "../utils/helper";
-import { useEffect } from "react";
 import { Jumbotron } from "./Jumbotron";
 import { DataTable } from "./DataTable";
+import Alerter from "./Alerter";
 
 export const View = () => {
   const { month } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
-  const { expenses, fy } = location.state;
-  useEffect(() => {
-    if (!(expenses || fy)) navigate("/query");
-  });
+  const { state } = location;
   if (!validMonths(month))
     return (
       <>
@@ -26,12 +22,15 @@ export const View = () => {
       </>
     );
 
-  console.log("[View] Expenses - ", expenses);
+  if (!("state" in location || "fy" in location)) {
+    console.log(state);
+    return <Alerter heading="Expenses not found" severity="danger" />;
+  }
   return (
     <>
       <Jumbotron
-        heading={`FY ${fy}`}
-        leadText={`Expenses for ${fy}`}
+        heading={`FY ${state.fy}`}
+        leadText={`Expenses for ${state.fy}`}
         buttons={[
           {
             isPrimary: false,
@@ -45,7 +44,10 @@ export const View = () => {
           },
         ]}
       />
-      <DataTable expenses={expenses} rest={{box: {}, table: {className: "m-0 p-0"}}}  />
+      <DataTable
+        expenses={state.expenses}
+        rest={{ box: {}, table: { className: "m-0 p-0" } }}
+      />
     </>
   );
 };
