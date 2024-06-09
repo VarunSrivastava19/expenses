@@ -4,16 +4,16 @@ import { View } from "./components/View";
 import { useContext } from "react";
 import { ThemeContext } from "./contexts/Theme";
 import { Home } from "./components/Home";
-import "./App.css";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { Custom404 } from "./components/Custom404";
 import { Query } from "./components/Query";
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   const { theme } = useContext(ThemeContext);
   return (
     <div className={`app-${theme}`}>
-      <ToastContainer closeOnClick position="bottom-right" theme={theme}/>
+      <ToastContainer closeOnClick position="bottom-right" theme={theme} />
       <Routes>
         <Route element={<Skeleton />}>
           <Route path="/" element={<Home />} />

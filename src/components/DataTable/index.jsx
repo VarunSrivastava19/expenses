@@ -1,7 +1,7 @@
 import { Table } from "react-bootstrap";
 import TableBox from "./TableBox";
 import { headers } from "../../utils/helper";
-import Alerter from "../../Alerter";
+import Alerter from "../Alerter";
 
 /**
  * @typedef {Object} Expense
